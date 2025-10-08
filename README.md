@@ -1,1 +1,0 @@
-# Yandex Practicum SWA PropDevelopment
