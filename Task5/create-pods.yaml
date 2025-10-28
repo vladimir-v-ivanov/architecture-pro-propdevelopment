@@ -1,0 +1,118 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: front-end-app
+  namespace: default
+  labels:
+    role: front-end
+spec:
+  containers:
+    - name: nginx
+      image: nginx
+      ports:
+        - containerPort: 80
+
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: back-end-api-app
+  namespace: default
+  labels:
+    role: back-end-api
+spec:
+  containers:
+    - name: nginx
+      image: nginx
+      ports:
+        - containerPort: 80
+
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: admin-front-end-app
+  namespace: default
+  labels:
+    role: admin-front-end
+spec:
+  containers:
+    - name: nginx
+      image: nginx
+      ports:
+        - containerPort: 80
+
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: admin-back-end-api-app
+  namespace: default
+  labels:
+    role: admin-back-end-api
+spec:
+  containers:
+    - name: nginx
+      image: nginx
+      ports:
+        - containerPort: 80
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: front-end-app
+  namespace: default
+spec:
+  type: ClusterIP
+  selector:
+    role: front-end
+  ports:
+    - port: 80
+      targetPort: 80
+      protocol: TCP
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: back-end-api-app
+  namespace: default
+spec:
+  type: ClusterIP
+  selector:
+    role: back-end-api
+  ports:
+    - port: 80
+      targetPort: 80
+      protocol: TCP
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: admin-front-end-app
+  namespace: default
+spec:
+  type: ClusterIP
+  selector:
+    role: admin-front-end
+  ports:
+    - port: 80
+      targetPort: 80
+      protocol: TCP
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: admin-back-end-api-app
+  namespace: default
+spec:
+  type: ClusterIP
+  selector:
+    role: admin-back-end-api
+  ports:
+    - port: 80
+      targetPort: 80
+      protocol: TCP
